@@ -1,0 +1,8 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Macs with M1 ARM chips may need additional compiler and linker options set in order to install pyodbc.
+export LDFLAGS="-L/opt/homebrew/Cellar/unixodbc/2.3.11/lib"
+export CPPFLAGS="-I/opt/homebrew/Cellar/unixodbc/2.3.11/include"
