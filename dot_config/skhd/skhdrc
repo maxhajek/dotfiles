@@ -1,0 +1,27 @@
+ctrl + alt - left : yabai -m window --swap west
+ctrl + alt - right : yabai -m window --swap east
+ctrl + alt - up : yabai -m window --swap north
+ctrl + alt - down : yabai -m window --swap south
+
+cmd - g : yabai -m window --toggle zoom-fullscreen
+cmd - e : yabai -m space --toggle show-desktop
+
+cmd - tab : yabai -m space --focus next
+cmd - escape : yabai -m space --focus prev
+
+ctrl + alt - return : yabai -m space --balance
+
+alt - n : yabai -m space --create && \
+	index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
+	yabai -m space --focus "${index}"
+
+ctrl + alt - n : yabai -m space --create && \
+	index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
+	yabai -m window --space "${index}" && \
+	yabai -m space --focus "${index}"
+
+ctrl + alt - m: yabai -m query --spaces --display | \
+    jq -re 'map(select(."is-native-fullscreen" == false)) | length > 1' && \
+    yabai -m query --spaces | \
+    jq -re 'map(select(."windows" == []).index) | reverse | .[] ' | \
+    xargs -I % sh -c 'yabai -m space % --destroy'
