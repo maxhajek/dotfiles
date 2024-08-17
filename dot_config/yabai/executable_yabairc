@@ -18,6 +18,8 @@ yabai -m config window_gap      11
 
 yabai -m config layout bsp
 yabai -m config auto_balance on
-yabai -m config mouse_follows_focus autoraise
+
+yabai -m rule --add app="System Settings" manage=off
+yabai -m rule --add app="Steam" manage=off
 
 echo "yabai configuration loaded.."
